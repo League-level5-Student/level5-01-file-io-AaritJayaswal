@@ -1,6 +1,9 @@
 package _02_File_Encrypt_Decrypt;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class FileEncryptor {
@@ -23,20 +26,32 @@ public class FileEncryptor {
 	 * Create a program that takes a message and a key from the user. Use the key to
 	 * shift each letter in the users input and save the final result to a file.
 	 */
+
 	public static void main(String[] args) {
-		
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Enter a message to encrypt");
-		String msg = scan.nextLine();
-		
-		ArrayList<String> list = new ArrayList<String>();
-		
-		
-		
-		for(int i = 0; i<msg.length();i++){
+		try {
+	
+			Scanner scan = new Scanner(System.in);
+			System.out.println("Write a message to encrypt: ");
+			String write = scan.nextLine();
+			System.out.println("Enter a key to shift by: ");
+			int key = scan.nextInt();
 			
+			String writeCrypt = "";
+			for (int i = 0; i < write.length(); i++) {
+				if (write.charAt(i) != ' ') {
+					char shift = (char) (write.charAt(i) + key);
+					writeCrypt = writeCrypt + shift;
+				} else {
+					writeCrypt = writeCrypt + " ";
+				}
+			}
+			System.out.println(writeCrypt);
 			
-			
+			FileWriter fw = new FileWriter("src/_02_File_Encrypt_Decrypt/FileEncryptor",true);
+			fw.write(writeCrypt);
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }
