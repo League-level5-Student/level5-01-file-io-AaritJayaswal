@@ -55,3 +55,5 @@ public class FileEncryptor {
 		}
 	}
 }
+
+//Copyright © 2023 Aarit Jayaswal
